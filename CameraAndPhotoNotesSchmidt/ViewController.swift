@@ -2,6 +2,7 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
+    @IBOutlet weak var imageViewOutlet: UIImageView!
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -9,6 +10,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.delegate = self
     }
 
+    @IBAction func photoAction(_ sender: UIButton) {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func cameraAction(_ sender: UIButton) {
+        
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        self.imageViewOutlet.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+    }
+    
+    
 
 }
 
