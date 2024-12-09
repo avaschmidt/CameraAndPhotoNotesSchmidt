@@ -17,7 +17,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     @IBAction func cameraAction(_ sender: UIButton) {
-        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+        }
+        else{
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
         
     }
     
